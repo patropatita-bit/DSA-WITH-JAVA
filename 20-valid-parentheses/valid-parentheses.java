@@ -5,30 +5,24 @@ class Solution {
             return false;
 
         char[] stack = new char[s.length()];
-        int top = -1;
+        int top = 0;
 
         for (char c : s.toCharArray()) {
 
-            if (c == '(' || c == '{' || c == '[') {
-                stack[++top] = c;
+            if (c == '(') {
+                stack[top++] = ')';
+            }else if(c == '{'){
+                stack[top++]='}';
+            }else if(c == '['){
+                stack[top++]= ']';
             }
             else {
-                if (top == -1)
+                if (top == 0 ||  c != stack[--top]){
                     return false;
-
-                char open = stack[top--];
-
-                if (c == ')' && open != '(')
-                    return false;
-
-                if (c == '}' && open != '{')
-                    return false;
-
-                if (c == ']' && open != '[')
-                    return false;
+                }
             }
         }
 
-        return top == -1;
+        return top == 0;
     }
 }
