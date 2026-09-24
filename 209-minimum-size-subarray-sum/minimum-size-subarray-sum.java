@@ -5,10 +5,11 @@ class Solution {
         int minLength = Integer.MAX_VALUE;
 
         for (int right = 0; right < nums.length; right++) {
-            sum += nums[right];              // expand window
+            sum += nums[right];              
 
-            while (sum >= target) {          // shrink window while valid
-                minLength = Math.min(minLength, right - left + 1);
+            while (sum >= target) {          
+int length= right - left + 1;
+                minLength = Math.min(minLength,length);
                 sum -= nums[left];
                 left++;
             }
